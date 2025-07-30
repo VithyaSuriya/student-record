@@ -4,9 +4,9 @@ const studentService = require('../services/studentService')
 exports.createStudent = async (req, res) => {
   try {
     const newStudent = await studentService.createStudent(req.body)
-    res.status(201).json(newStudent)
+    res.status(201).json({data:newStudent,message:'Added',error:null})
   } catch (err) {
-    res.status(400).json({message:'Failed', error: err.message })
+    res.status(400).json({data:null,message:'Failed', error: err.message })
   }
 }
 
@@ -15,9 +15,9 @@ exports.getAllStudents = async (req, res) => {
   try{
     const students=await
     studentService.getAllStudents()
-      res.status(200).json(students)
+      res.status(200).json({data:students,message:'Fetched',error:null})
     }catch(error){
-      res.status(500).json({message:'Failed',error:err.message})
+      res.status(500).json({data:null,message:'Failed',error:err.message})
     } 
 };
 
@@ -26,11 +26,11 @@ exports.getStudentById = async (req, res) => {
   try {
     const student = await studentService.getStudentById(req.params.id)
     if (!student) {
-      return res.status(404).json({ error: "Student not found" })
+      return res.status(404).json({ data:null,message:'Student Not Found',error: 'Student not found' })
     }
-    res.status(200).json(student)
+    res.status(200).json({data:student,message:'Fetched by ID',error:null})
   } catch (err) {
-    res.status(400).json({ error: err.message })
+    res.status(500).json({ data:null,message:'Failed',error:err.message})
   }
 }
 
@@ -39,11 +39,11 @@ exports.updateStudent = async (req, res) => {
   try {
     const updateStudent = await studentService.updateStudent(req.params.id, req.body)
     if(!updateStudent){
-      return res.status(404).json({message:'Not found'})
+      return res.status(404).json({data:null,message:'ID Not found',eror:'not found'})
     }
-    res.status(200).json(updateStudent)
+    res.status(200).json({data:updateStudent,message:'Updated',error:null})
   } catch (err) {
-    res.status(400).json({ error: err.message })
+    res.status(500).json({  data:null,message:'Failed',error:err.message})
   }
 }
 
@@ -53,11 +53,11 @@ exports.deleteStudent = async (req, res) => {
     const deleted = await
     studentService.deleteStudent(req.params.id)
        if(!deleted){
-        return res.status(404).json({message:'Not Found'})
+        return res.status(404).json({data:null,message:'ID Not Found',error:'Not found'})
        }
-      res.status(200).json({message:'Deleted'})
+      res.status(200).json({data:deleted,message:'Deleted',error:null})
  }catch(error){
-  res.status(500).json({message:'Failed',error:error.message})
+  res.status(500).json({ data:null,message:'Failed',error:err.message})
  }
 }
 
