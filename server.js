@@ -4,8 +4,8 @@ const app = express()
 const indexRouter = require('./routes/index')
 app.use(express.json())
 app.use('/',indexRouter)
-
-mongoose.connect('mongodb://127.0.0.1:27017/yourdbname', {
+require('dotenv').config()
+mongoose.connect('mongodb://127.0.0.1:27017/studentrecords', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
