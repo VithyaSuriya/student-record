@@ -1,10 +1,9 @@
-// tests/verify.test.js
 const jwt = require('jsonwebtoken')
-const middleware = require('../middleware/verifyToken') // Adjust path if needed
+const middleware = require('../middleware/verifyToken')
 
 describe('JWT Middleware', () => {
 
-    it('should return 401 when token is not provided', () => {
+    it('should return 401 when token is not provided', ()=> {
         const req = { headers: {} }
         const res = {
             status: jest.fn().mockReturnThis(),
@@ -22,7 +21,7 @@ describe('JWT Middleware', () => {
         })
     })
 
-    it('should return 403 when token is invalid', done => {
+    it('should return 403 when token is invalid', done=> {
         const req = {
             headers: {
                 authorization: 'Bearer invalidtoken'
