@@ -15,6 +15,7 @@ exports.loginUser = async (req, res) => {
         const user = await userService.loginUser(email, password)
         res.status(200).json({data:user, message: 'Login successful', error:null })
     } catch (err) {
+        console.error('Register Error:',err)
         res.status(401).json({data:null,message:'Invalid email or password', error: err.message })
     }
 }
