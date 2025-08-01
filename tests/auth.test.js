@@ -1,3 +1,4 @@
+require('dotenv').config()
 const request = require('supertest');
 const app = require('../server');
 const mongoose = require('mongoose');
@@ -8,10 +9,7 @@ describe('Protected route test', () => {
   let token;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URL);
-
-  
-    await User.deleteMany({})
+  await User.deleteMany({})
     const testUser = await User.create({
       username: 'testuser',
       email: 'test@example.com',
@@ -30,9 +28,9 @@ describe('Protected route test', () => {
     await mongoose.connection.close()
   })
 
-  test('GET /api/user/protected returns 200 with auth token', async () => {
+  test('GET/users returns 200 with auth token', async () => {
     const res = await request(app)
-      .get('/api/user/protected')
+      .get('/users')
       .set('Authorization', `Bearer ${token}`)
 
     expect(res.statusCode).toBe(200)
