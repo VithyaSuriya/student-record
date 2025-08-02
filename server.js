@@ -18,7 +18,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/studentrecords', {
 .then(() => {
   console.log('MongoDB connected ')
 if(process.env.NODE_ENV !=='test'){
-    app.listen(3000, () => {
+    app.listen(5000, () => {
       console.log("Connected")
 })
 }
