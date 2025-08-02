@@ -6,8 +6,8 @@ const passport=require('passport')
  require('dotenv').config()
 require('./config/passport')(passport)
 app.use(express.json())
-app.use('/',indexRouter)
 app.use(passport.initialize())
+app.use('/',indexRouter)
 
 
 
