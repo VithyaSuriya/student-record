@@ -1,8 +1,8 @@
 require('dotenv').config()
-const request = require('supertest');
-const app = require('../server');
-const mongoose = require('mongoose');
-const User = require('../models/userModel');
+const request = require('supertest')
+const app = require('../server')
+const mongoose = require('mongoose')
+const User = require('../models/userModel')
 const jwt = require('jsonwebtoken')
 
 describe('Protected route test', () => {
